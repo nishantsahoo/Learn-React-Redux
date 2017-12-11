@@ -1,25 +1,33 @@
 import React, {Component} from 'react';
-import {bindActionsCreators} from 'redux';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class UserList extends Component {
-	render() {
-		return (
-			<ul>
-				<li>one</li>
-				<li>two</li>
-				<li>three</li>
-			</ul>
+
+	renderItems() {
+		return this.props.users.map((user => {
+			return (
+				<li key={user.id}>{user.first} {user.last}</li>
+			)
+		})
 		)
 	}
+
+    render() {
+        return (
+            <ul>
+                {this.renderItems()}
+            </ul>
+        );
+    }
 }
 
 // mapStateToProps function will be used to pass this state or store data to the component
 
 function mapStateToProps(state) {
-	return  (
+	return {
 		users: state.users
-	)
+	};
 }
 
 export default connect(mapStateToProps)(UserList);
