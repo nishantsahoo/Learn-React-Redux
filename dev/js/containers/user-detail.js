@@ -1,11 +1,14 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
+// if user if null, don't display anything
+
 class UserDetail extends Component {
 	render() {
 		if(!this.props.user) {
 			return (<h4>Select a user</h4>);
 		}
+
 		return (
 			<div>
 				<img src={this.props.user.thumbnail}/>
